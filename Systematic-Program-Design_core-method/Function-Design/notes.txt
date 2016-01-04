@@ -1,0 +1,266 @@
+Systemetizes a design of a function
+
+Ensures a high quality function that does what we want and is well tested
+
+;; Number -> Number ... signature
+;; produce 2 times the given number
+(check-expect (double 3) 6)
+(check-expect (double 4.2) 8.4)
+
+(define (double n) 0) ... this is the stub
+
+(define (double n)
+	(...n)) ... this is the template
+
+// copy the template and design your function
+
+(define (double n) 
+	(* 2 n))
+
+////
+
+;; Design a function that consumes a number and doubles it
+
+; Job of the signature shows what it is designed to do ( consumes a number and produces a number)
+;; Number -> Number
+
+; Purpose is a one line desicription of what it does
+;; produces 2 times the given number
+
+; stub is like scaffolding - it has the correct function name, the correct number of parameters, produces a dummy result of the correct type
+;(define (double n) 0)
+
+; examples and tests (wrapped in check-expect)
+; they help us understand what a function must do - multiple examples to illustrate behavior
+; wrapping them in check-expect means they will also serve as a unit text for the completed function
+; we have multiple examples to show that the function can serve in multiple roles (integers, real numbers)
+(check-expect (double 3) 6)
+(check-expect (double 4.2) 8.4)
+
+; template - the body of the template is the outline of the function
+
+;(define (double n)
+;  (...n))
+
+(define (double n)
+  (* 2 n))
+
+;; Signature, purpose, stub
+; Number -> Number
+; Produce 2 times the given number
+; (define (double n) 0)
+;; Examples (wrapped in check-expect)
+;; Inventory - templates and constants
+; (define (double n)
+;    (... n))
+;; Code Body
+;; Test and Debug
+
+////// Pluralize
+
+; Design a function that pluralizes a given word.
+; (Pluralize means to convert the word to its plural form.)
+; For simplicity you may assume that just adding s is
+; enough to pluralize a word.
+
+; Signature
+; String -> String
+; Purpose
+; produces the pluralized version of a string by adding S to the end
+; stub
+
+;A stub must have the correct function name,
+;the correct number of parameters,
+;and produce a value of the correct type.
+;As part of writing the stub we end up deciding on a good name
+;for the function. The name should say what the function produces
+;when it is called, not necessarily how it does that internally.
+;Of the choices above, the 1st and 3rd have good function names.
+;All accept the correct number of parameters.
+; Only the 2nd and 3rd produce a value of the correct type.
+; So only the 3rd option is a good stub for this problem.
+; (define (pluralize w) '')
+;; template
+;; (define (pluralize str)
+   (string-append str "s"))
+
+ (check-expect (pluralize "cat") "cats")
+
+
+ ;; Design a function that consumes a number and doubles it
+
+; Job of the signature shows what it is designed to do ( consumes a number and produces a number)
+;; Number -> Number
+
+; Purpose is a one line desicription of what it does
+;; produces 2 times the given number
+
+; stub is like scaffolding - it has the correct function name, the correct number of parameters, produces a dummy result of the correct type
+;(define (double n) 0)
+
+; examples and tests (wrapped in check-expect)
+; they help us understand what a function must do - multiple examples to illustrate behavior
+; wrapping them in check-expect means they will also serve as a unit text for the completed function
+; we have multiple examples to show that the function can serve in multiple roles (integers, real numbers)
+(check-expect (double 3) 6)
+(check-expect (double 4.2) 8.4)
+
+; template - the body of the template is the outline of the function
+
+;(define (double n)
+;  (...n))
+
+(define (double n)
+  (* 2 n))
+
+;; Signature, purpose, stub
+; Number -> Number
+; Produce 2 times the given number
+; (define (double n) 0)
+;; Examples (wrapped in check-expect)
+;; Inventory - templates and constants
+; (define (double n)
+;    (... n))
+;; Code Body
+;; Test and Debug
+
+(require 2htdp/image)
+
+;; Image -> Boolean
+;; produce true if image is tall (height is greater than width)
+;(define (tall? img) false) ; stub
+
+;; if you can think of a new case (in this example testing for more than just
+;; whether something is tall and broadining to validating height based on
+;; tall, short, and equal, you need to
+;; 1) write an example test right away
+;; 2) update all affected parts of the design (involving purpose and/or function definition)
+;; 3) involves existing tests or the signature
+(check-expect (tall? (rectangle 2 3 "solid" "red")) true)
+(check-expect (tall? (rectangle 2 1 "solid" "blue")) false)
+(check-expect (tall? (rectangle 2 2 "solid" "green")) false)
+
+;(define (tall? img)
+;  (... img))
+
+(define (tall? img)
+  (if (> (image-height img) (image-width img))
+      true
+      false))
+
+(define (tall? img)
+  (> (image-height img) (image-width img))
+
+  ///// PRACTICE PROBLEMS
+
+  ; 
+; PROBLEM:
+; 
+; DESIGN function that consumes a string and determines whether its length is
+; less than 5.  Follow the HtDF recipe and leave behind commented out versions 
+; of the stub and template.
+; 
+
+1)
+
+;; String -> Boolean
+;; Consumes a string and evalutates whether the length is less than 5 with a boolean
+(check-expect (StringLengthFive? "cat") true)
+(check-expect (StringLengthFive? "") true)
+(check-expect (StringLengthFive? "function") false)
+(check-expect (StringLengthFive? "house") false)
+
+;(define (StringLengthFive? str) 0)
+
+;(define (StringLengthFive? str)
+;  (... str))
+
+(define (StringLengthFive? str)
+  (> 5 (string-length str)))
+//// solution
+
+
+;; String -> Boolean
+;; produce true if length of s is less than 5
+(check-expect (less-than-5? "") true)
+(check-expect (less-than-5? "five") true)
+(check-expect (less-than-5? "12345") false)
+(check-expect (less-than-5? "eighty") false)
+
+;(define (less-than-5? s)  ;stub
+;  true)
+
+;(define (less-than-5? s)  ;template
+;  (... s))
+
+(define (less-than-5? s)
+  (< (string-length s) 5))
+
+2)
+
+;; Number -> Number
+;; Consumes a number and doubles it
+(check-expect (double 0) 0)
+(check-expect (double 4) 8)
+(check-expect (double 3.3) (* 2 3.3))
+
+
+;(define (double n) 0) ; stub
+
+;(define (double n)   ; template
+; (... n))
+
+(define (double n)
+  (* 2 n))
+
+  3)
+
+  ;; Image -> Image
+;; Puts a box around given image. Box is 2 pixels wider and taller than given image.
+;; NOTE: A solution that follows the recipe but makes the box the same width and height 
+;;       is also good. It just doesn't look quite as nice. 
+(check-expect (boxify (circle 10 "solid" "red")) 
+              (overlay (rectangle 22 22 "outline" "black")
+                       (circle 10 "solid" "red")))
+(check-expect (boxify (star 40 "solid" "gray")) 
+              (overlay (rectangle 67 64 "outline" "black")
+                       (star 40 "solid" "gray")))
+
+;(define (boxify i) (circle 2 "solid" "green"))
+
+#;
+(define (boxify i)
+  (... i))
+
+(define (boxify i)
+  (overlay (rectangle (+ (image-width  i) 2)
+                      (+ (image-height i) 2)
+                      "outline"
+                      "black")
+           i))
+
+//// FINAL QUIZ
+
+(require 2htdp/image)
+
+;; Design a function that consumes two images and produces true if the first is larger than the second.
+
+;; Image, Image -> Boolean
+;; Evaluates two images producing a boolean if the first argument is larger than the second
+(check-expect (larger-image? (rectangle 2 2 "solid" "red")(rectangle 1 1 "solid" "blue")) true)
+(check-expect (larger-image? (circle 2 "solid" "red")(rectangle 1 1 "solid" "blue")) true)
+
+
+;(define (larger-image? img1 img2) false) ; stub
+
+;(define (larger-image? img1 img2)        ;template
+;  (... img1 img2))
+
+
+(define (larger-image? img1 img2)     
+  (> (* (image-width img1) (image-height img1))
+  (* (image-width img2) (image-height img2))))
+
+
+  
+
