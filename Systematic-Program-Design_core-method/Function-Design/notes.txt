@@ -261,6 +261,3 @@ Ensures a high quality function that does what we want and is well tested
   (> (* (image-width img1) (image-height img1))
   (* (image-width img2) (image-height img2))))
 
-
-  
-
